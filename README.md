@@ -12,9 +12,9 @@ The first iteration is targeting an MVP that will work as follows:
 
 | Task        | Status |
 | ----------- | ------ |
-| Narrative 1 | ⚪️    |
-| Narrative 2 | ⚪️    |
-| Narrative 3 | ⚪️    |
+| Narrative 1 | 🟢    |
+| Narrative 2 | 🟢    |
+| Narrative 3 | 🟢    |
 
 ## First Case
 
@@ -51,5 +51,5 @@ After 10 blocks have been placed, the game ends and the score is calculated : ea
 ## Legend
 
 - DONE: 🟢
-- WIP: 🟠
+- WIP:  🟠
 - TODO: ⚪️

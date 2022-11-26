@@ -8,17 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		A1A5EC38292E508500AD80FB /* GameOfBlocksSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A5EC37292E508500AD80FB /* GameOfBlocksSampleApp.swift */; };
-		A1A5EC3A292E508500AD80FB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A5EC39292E508500AD80FB /* ContentView.swift */; };
 		A1A5EC3C292E508700AD80FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1A5EC3B292E508700AD80FB /* Assets.xcassets */; };
 		A1A5EC3F292E508700AD80FB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1A5EC3E292E508700AD80FB /* Preview Assets.xcassets */; };
+		A1A5EC482930010700AD80FB /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A5EC472930010700AD80FB /* GameView.swift */; };
+		A1A5EC502930118A00AD80FB /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A5EC4F2930118A00AD80FB /* GameViewModel.swift */; };
+		A1A5EC532930122700AD80FB /* GamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A5EC522930122700AD80FB /* GamePresenter.swift */; };
+		A1A5EC5B2932655200AD80FB /* GamePresenterImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A5EC5A2932655200AD80FB /* GamePresenterImplementation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A1A5EC34292E508500AD80FB /* GameOfBlocksSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfBlocksSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1A5EC37292E508500AD80FB /* GameOfBlocksSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOfBlocksSampleApp.swift; sourceTree = "<group>"; };
-		A1A5EC39292E508500AD80FB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A1A5EC3B292E508700AD80FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1A5EC3E292E508700AD80FB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A1A5EC472930010700AD80FB /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		A1A5EC4F2930118A00AD80FB /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		A1A5EC522930122700AD80FB /* GamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenter.swift; sourceTree = "<group>"; };
+		A1A5EC5A2932655200AD80FB /* GamePresenterImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenterImplementation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +58,10 @@
 			isa = PBXGroup;
 			children = (
 				A1A5EC37292E508500AD80FB /* GameOfBlocksSampleApp.swift */,
-				A1A5EC39292E508500AD80FB /* ContentView.swift */,
+				A1A5EC592932654300AD80FB /* Implementation */,
+				A1A5EC512930121200AD80FB /* Presenter */,
+				A1A5EC4A2930064500AD80FB /* Model */,
+				A1A5EC46293000FB00AD80FB /* Views */,
 				A1A5EC3B292E508700AD80FB /* Assets.xcassets */,
 				A1A5EC3D292E508700AD80FB /* Preview Content */,
 			);
@@ -65,6 +74,38 @@
 				A1A5EC3E292E508700AD80FB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A1A5EC46293000FB00AD80FB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A1A5EC472930010700AD80FB /* GameView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A1A5EC4A2930064500AD80FB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A1A5EC4F2930118A00AD80FB /* GameViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A1A5EC512930121200AD80FB /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A1A5EC522930122700AD80FB /* GamePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A1A5EC592932654300AD80FB /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				A1A5EC5A2932655200AD80FB /* GamePresenterImplementation.swift */,
+			);
+			path = Implementation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +178,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1A5EC3A292E508500AD80FB /* ContentView.swift in Sources */,
+				A1A5EC532930122700AD80FB /* GamePresenter.swift in Sources */,
+				A1A5EC482930010700AD80FB /* GameView.swift in Sources */,
 				A1A5EC38292E508500AD80FB /* GameOfBlocksSampleApp.swift in Sources */,
+				A1A5EC5B2932655200AD80FB /* GamePresenterImplementation.swift in Sources */,
+				A1A5EC502930118A00AD80FB /* GameViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
