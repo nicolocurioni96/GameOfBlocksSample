@@ -2,18 +2,14 @@
 //  GamePresenterImplementation.swift
 //  GameOfBlocksSample
 //
-//  Created by Nicolò Curioni on 24/11/22.
+//  Created by Nicolò Curioni on 26/11/22.
 //
 
-import Foundation
+import SwiftUI
 
-final class GamePresenterImplementation: GamePresenter {
+final class GamePresenterImplementation: ObservableObject, GamePresenterProtocol {
     
-    private var viewModel: GameViewModel
-    
-    init(viewModel: GameViewModel) {
-        self.viewModel = viewModel
-    }
+    @Published var viewModel = GameViewModel()
     
     // MARK: GamePresenter protocol methods
     func updateSelectedBlock(_ rowIndex: Int, _ columnIndex: Int) {
@@ -78,7 +74,7 @@ final class GamePresenterImplementation: GamePresenter {
     func checkNeighbor(_ rowIndex: Int, _ columnIndex: Int) -> Bool {
         let leftNeighborIndex: [String : Int] = ["rowIndex" : rowIndex, "columnIndex" : columnIndex]
         
-        return self.viewModel.selectedBlocks.contains(leftNeighborIndex) ? true : false
+        return viewModel.selectedBlocks.contains(leftNeighborIndex) ? true :false
     }
     
     func checkHorizontalNeighbors(_ rowIndex: Int, _ columnIndex: Int) -> Bool {
@@ -89,7 +85,8 @@ final class GamePresenterImplementation: GamePresenter {
     }
     
     func showUserScore(_ areActiveNeighbors: Bool, _ currentRowIndex: Int) {
-        if self.viewModel.selectedBlocks.count == self.viewModel.resultLength && (areActiveNeighbors || currentRowIndex == self.viewModel.numberOfRows - 1) {
+        if viewModel.selectedBlocks.count == viewModel.resultLength && (areActiveNeighbors || currentRowIndex == viewModel.numberOfRows - 1) {
+            
             self.calculateScore()
             
             return
@@ -97,52 +94,48 @@ final class GamePresenterImplementation: GamePresenter {
     }
     
     func calculateScore() {
-        for blockIndex in 0..<self.viewModel.selectedBlocks.count {
-            var score = self.viewModel.initialBlockScore
-            var rowIndexOfBlock: Int = self.viewModel.selectedBlocks[blockIndex]["rowIndex"] ?? 0
-            var columnIndexOfBlock: Int = self.viewModel.selectedBlocks[blockIndex]["columnIndex"] ?? 0
+        for blockedIndex in 0..<viewModel.selectedBlocks.count {
+            var score = viewModel.initialBlockScore
+            var rowIndexOfBlock: Int = viewModel.selectedBlocks[blockedIndex]["rowIndex"] ?? 0
+            let columnIndexOfBlock: Int = viewModel.selectedBlocks[blockedIndex]["columnIndex"]  ?? 0
             
-            if rowIndexOfBlock < self.viewModel.numberOfRows {
-                let rowDifference = (self.viewModel.numberOfRows - rowIndexOfBlock - 1)
-                
-                for numberDifference in 0..<rowDifference {
-                    let localIndex = rowIndexOfBlock + numberDifference
+            if (rowIndexOfBlock < viewModel.numberOfRows) {
+                let rowDifference = (viewModel.numberOfRows - rowIndexOfBlock - 1)
+                for n in 0..<rowDifference {
+                    let localIndex = rowIndexOfBlock+n
                     let bottomNeighborCheck = checkNeighbor(localIndex + 1, columnIndexOfBlock)
                     
-                    if !bottomNeighborCheck && localIndex + 1 < self.viewModel.numberOfRows {
-                        let cellIndex = ["rowIndex" : localIndex + 1, "columnIndex" : columnIndexOfBlock, "score" : self.viewModel.emptyNeighborScore]
-                        
-                        if !self.viewModel.scoreArray.contains(cellIndex) {
-                            self.viewModel.scoreArray.append(cellIndex)
+                    if !bottomNeighborCheck && localIndex + 1 < viewModel.numberOfRows {
+                        let cellIndex = ["rowIndex" : localIndex + 1, "columnIndex" : columnIndexOfBlock, "score" : viewModel.emptyNeighborScore]
+                        if !viewModel.scoreArray.contains(cellIndex) {
+                            viewModel.scoreArray.append(cellIndex)
                         }
                         
-                    } else if bottomNeighborCheck && rowIndexOfBlock + 1 < self.viewModel.numberOfRows {
-                        score += self.viewModel.filledNeighborScore
+                    } else if (bottomNeighborCheck && rowIndexOfBlock + 1 < viewModel.numberOfRows) {
+                        score = score + viewModel.filledNeighborScore
                     }
                 }
-                
-                let cellIndex = ["rowIndex" : rowIndexOfBlock, "columnIndex" : columnIndexOfBlock, "score" : score]
-                
-                if !self.viewModel.scoreArray.contains(cellIndex) {
-                    self.viewModel.scoreArray.append(cellIndex)
+                let  cellIndex = ["rowIndex":rowIndexOfBlock, "columnIndex":columnIndexOfBlock, "score":score]
+                if !viewModel.scoreArray.contains(cellIndex) {
+                    viewModel.scoreArray.append(cellIndex)
                 }
                 
-                rowIndexOfBlock += 1
+                rowIndexOfBlock =  rowIndexOfBlock + 1
             }
             
-            calculateScore()
+            calculateFinalScore()
         }
     }
     
     func calculateFinalScore() {
         var totalScore = 0
         
-        for index in 0..<self.viewModel.scoreArray.count {
-            let blockScore: Int = self.viewModel.scoreArray[index]["score"] ?? 0
+        for index in 0..<viewModel.scoreArray.count {
+            let blockedScore: Int = viewModel.scoreArray[index]["score"] ?? 0
             
-            totalScore += blockScore
+            totalScore = totalScore + blockedScore
         }
         
-        self.viewModel.finalScore = "\(totalScore)"
+        viewModel.finalScore = "\(totalScore)"
     }
 }

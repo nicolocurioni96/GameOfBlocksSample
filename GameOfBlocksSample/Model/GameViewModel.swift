@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-final class GameViewModel: ObservableObject {
+struct GameViewModel {
     let emptyNeighborScore = 1
     let filledNeighborScore = 5
     let initialBlockScore = 5
@@ -17,7 +17,7 @@ final class GameViewModel: ObservableObject {
     
     var selectedBlocks = [[String : Int]]()
     var scoreArray = [[String : Int]]()
-    var finalScore = ""
+    var finalScore = "0"
     var isUserInteractionDisabled = false
     var resultLength = 10
     var columns: [GridItem] {
