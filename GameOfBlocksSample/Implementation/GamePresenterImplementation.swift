@@ -9,7 +9,7 @@ import SwiftUI
 
 final class GamePresenterImplementation: ObservableObject, GamePresenterProtocol {
     
-    @Published var viewModel = GameViewModel()
+    @Published var viewModel = GameModel()
     
     // MARK: GamePresenter protocol methods
     func updateSelectedBlock(_ rowIndex: Int, _ columnIndex: Int) {

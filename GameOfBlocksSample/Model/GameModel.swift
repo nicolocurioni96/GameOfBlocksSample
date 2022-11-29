@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct GameViewModel {
+struct GameModel {
     let emptyNeighborScore = 1
     let filledNeighborScore = 5
     let initialBlockScore = 5
