@@ -12,9 +12,9 @@ The first iteration is targeting an MVP that will work as follows:
 
 | Task        | Status |
 | ----------- | ------ |
-| Narrative 1 | 🟢    |
-| Narrative 2 | 🟢    |
-| Narrative 3 | 🟢    |
+| Narrative 1 | 🟢     |
+| Narrative 2 | 🟢     |
+| Narrative 3 | 🟢     |
 
 ## First Case
 
@@ -48,8 +48,26 @@ After 10 blocks have been placed, the game ends and the score is calculated : ea
 
 ![This is an image](assets/last_case.png)
 
+## Model Specs
+
+### Game Model
+
+| Property                    | Type                                             |
+| --------------------------- | ------------------------------------------------ |
+| `emptyNeighborScore`        | `Int`                                            |
+| `filledNeighborScore`       | `Int`                                            |
+| `initialBlockScore`         | `Int`                                            |
+| `numberOfColumns`           | `Int`                                            |
+| `numberOfRows`              | `Int`                                            |
+| `selectedBlocks`            | `Array(arrayLiteral: Dictionary<String, Int>())` |
+| `scoreArray`                | `Array(arrayLiteral: Dictionary<String, Int>())` |
+| `finalScore`                | `String`                                         |
+| `isUserInteractionDisabled` | `Bool`                                           |
+| `resultLength`              | `Int`                                            |
+| `columns`                   | `Array<GridItem>`                                |
+
 ## Legend
 
 - DONE: 🟢
-- WIP:  🟠
+- WIP: 🟠
 - TODO: ⚪️

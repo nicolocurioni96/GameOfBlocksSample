@@ -8,7 +8,7 @@
 import SwiftUI
 
 protocol GamePresenterProtocol: ObservableObject {
-    var viewModel: GameViewModel { get set }
+    var viewModel: GameModel { get set }
     
     func updateSelectedBlock(_ rowIndex: Int, _ columnIndex: Int)
     func checkNeighbor(_ rowIndex: Int, _ columnIndex: Int) -> Bool
